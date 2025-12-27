@@ -1,0 +1,148 @@
+.reports-page {
+  width: 100%;
+}
+
+.reports-page h1 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.reports-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.report-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.report-card h2 {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.report-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chart-placeholder {
+  background: #f5f7ff;
+  border: 2px dashed #667eea;
+  border-radius: 6px;
+  padding: 3rem 1rem;
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-placeholder p {
+  font-size: 1.2rem;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.report-button {
+  align-self: flex-start;
+  padding: 0.8rem 1.5rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.report-button:hover {
+  background-color: #764ba2;
+  transform: translateY(-2px);
+}
+
+.report-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .reports-page h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .reports-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .report-card {
+    padding: 1.5rem;
+  }
+
+  .report-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .chart-placeholder {
+    padding: 2rem 1rem;
+    min-height: 150px;
+  }
+
+  .chart-placeholder p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reports-page h1 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .reports-container {
+    gap: 1rem;
+  }
+
+  .report-card {
+    padding: 1rem;
+  }
+
+  .report-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .report-content {
+    gap: 1rem;
+  }
+
+  .chart-placeholder {
+    padding: 1.5rem 0.5rem;
+    min-height: 120px;
+  }
+
+  .chart-placeholder p {
+    font-size: 0.9rem;
+  }
+
+  .report-button {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+}

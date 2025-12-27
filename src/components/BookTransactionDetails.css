@@ -1,0 +1,625 @@
+.book-transaction-container {
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.book-transaction-header {
+  background: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.book-transaction-back-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.book-transaction-back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-2px);
+}
+
+.book-transaction-back-button:active {
+  transform: translateX(0);
+}
+
+.book-transaction-title {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+  flex: 1;
+}
+
+.book-transaction-spacer {
+  width: 60px;
+  flex-shrink: 0;
+}
+
+/* Content */
+.book-transaction-content {
+  flex: 1;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+
+/* Book Info Card */
+.book-info-card {
+  background: white;
+  border: 1px solid #ecf0f1;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.6s ease-out 0.1s both;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.book-info-header {
+  background: #667eea;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.book-info-header .book-info-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 1;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.book-info-header .book-info-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.book-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ecf0f1;
+  transition: background-color 0.3s ease;
+}
+
+.book-info-item:nth-child(2) {
+  background: #f0f4ff;
+}
+
+.book-info-item:nth-child(3) {
+  background: #f5f9ff;
+}
+
+.book-info-item:nth-child(4) {
+  background: #f0f9ff;
+}
+
+.book-info-item:nth-child(5) {
+  background: #f5f4ff;
+}
+
+.book-info-item:nth-child(6) {
+  background: #f0f4ff;
+}
+
+.book-info-item:last-child {
+  border-bottom: none;
+}
+
+.book-info-item:hover {
+  background-color: rgba(102, 126, 234, 0.08);
+}
+
+.book-info-label {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  opacity: 0.8;
+}
+
+.book-info-value {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Transactions Section */
+.transactions-section {
+  animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+.date-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.nav-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.65rem 1.3rem;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: 50px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.nav-button:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.nav-button:active {
+  transform: translateY(0);
+}
+
+.current-date {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 700;
+  min-width: 140px;
+  text-align: center;
+}
+
+/* Transactions Cards */
+.transactions-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.transaction-card {
+  background: white;
+  border: 2px solid #ecf0f1;
+  border-left: 5px solid #667eea;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(102, 126, 234, 0.1);
+  transition: all 0.3s ease;
+  animation: slideUp 0.6s ease-out both;
+  position: relative;
+}
+
+.transaction-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #667eea;
+}
+
+.transaction-card:hover {
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+  transform: translateY(-4px);
+  border-color: #667eea;
+}
+
+.transaction-card:nth-child(1) {
+  border-left-color: #667eea;
+}
+
+.transaction-card:nth-child(1)::before {
+  background: #667eea;
+}
+
+.transaction-card:nth-child(2) {
+  border-left-color: #27ae60;
+}
+
+.transaction-card:nth-child(2)::before {
+  background: #27ae60;
+}
+
+.transaction-card:nth-child(3) {
+  border-left-color: #e74c3c;
+}
+
+.transaction-card:nth-child(3)::before {
+  background: #e74c3c;
+}
+
+.transaction-header {
+  background: #f8f9fa;
+  color: #2c3e50;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 2px solid #ecf0f1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.transaction-header::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #667eea;
+}
+
+.transaction-card:nth-child(1) .transaction-header::before {
+  background: #667eea;
+}
+
+.transaction-card:nth-child(2) .transaction-header::before {
+  background: #27ae60;
+}
+
+.transaction-card:nth-child(3) .transaction-header::before {
+  background: #e74c3c;
+}
+
+.transaction-label {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #2c3e50;
+}
+
+.transaction-details {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+  border-left: 3px solid #ecf0f1;
+}
+
+.detail-item:hover {
+  background: #f0f4ff;
+  border-left-color: #667eea;
+}
+
+.transaction-card:nth-child(2) .detail-item:hover {
+  background: #f0fdf4;
+  border-left-color: #27ae60;
+}
+
+.transaction-card:nth-child(3) .detail-item:hover {
+  background: #fef2f2;
+  border-left-color: #e74c3c;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0.75rem;
+}
+
+.detail-name {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  opacity: 0.9;
+}
+
+.detail-amount {
+  color: #667eea;
+  font-weight: 700;
+  font-size: 1.2rem;
+  background: rgba(102, 126, 234, 0.1);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
+
+.detail-amount.negative {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.detail-amount.positive {
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.1);
+}
+
+.transaction-card:nth-child(2) .detail-amount {
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.1);
+}
+
+/* .transaction-card:nth-child(3) .detail-amount {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+} */
+
+/* No Transactions */
+.no-transactions {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: #7f8c8d;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.no-transactions p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+  .book-transaction-header {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .book-transaction-content {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .book-info-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .book-info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .date-navigation {
+    gap: 1.5rem;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .current-date {
+    font-size: 1.1rem;
+    min-width: 120px;
+  }
+
+  .transaction-card {
+    margin-bottom: 1rem;
+  }
+
+  .transaction-header {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .transaction-label {
+    font-size: 0.95rem;
+  }
+
+  .transaction-details {
+    padding: 1.2rem;
+    gap: 0.8rem;
+  }
+
+  .detail-item {
+    padding-bottom: 0.6rem;
+  }
+
+  .detail-name {
+    font-size: 0.9rem;
+  }
+
+  .detail-amount {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .book-transaction-header {
+    padding: 1rem 0.75rem;
+  }
+
+  .book-transaction-title {
+    font-size: 1.3rem;
+  }
+
+  .book-transaction-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .book-info-header {
+    padding: 0.8rem 1rem;
+  }
+
+  .book-info-header .book-info-value {
+    font-size: 1.3rem;
+  }
+
+  .book-info-item {
+    padding: 0.8rem 1rem;
+  }
+
+  .date-navigation {
+    gap: 1rem;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav-button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.95rem;
+    min-width: 45px;
+  }
+
+  .current-date {
+    font-size: 1rem;
+    min-width: 100px;
+  }
+
+  .transactions-cards {
+    gap: 1rem;
+  }
+
+  .transaction-card {
+    border-radius: 10px;
+  }
+
+  .transaction-header {
+    padding: 0.8rem 1rem;
+  }
+
+  .transaction-label {
+    font-size: 0.9rem;
+  }
+
+  .transaction-details {
+    padding: 1rem;
+    gap: 0.7rem;
+  }
+
+  .detail-item {
+    padding-bottom: 0.5rem;
+  }
+
+  .detail-name {
+    font-size: 0.85rem;
+  }
+
+  .detail-amount {
+    font-size: 0.95rem;
+  }
+
+  .no-transactions {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+  .book-transaction-header {
+    padding: 0.9rem 0.6rem;
+  }
+
+  .book-transaction-back-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .book-transaction-title {
+    font-size: 1.2rem;
+  }
+
+  .book-info-header .book-info-value {
+    font-size: 1.2rem;
+  }
+
+  .book-info-label {
+    font-size: 0.8rem;
+  }
+
+  .book-info-value {
+    font-size: 0.95rem;
+  }
+
+  .date-navigation {
+    gap: 0.75rem;
+    padding: 0.6rem;
+  }
+
+  .nav-button {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.9rem;
+    min-width: 40px;
+  }
+
+  .current-date {
+    font-size: 0.95rem;
+    min-width: 90px;
+  }
+
+  .transaction-header {
+    padding: 0.7rem 0.9rem;
+  }
+
+  .transaction-details {
+    padding: 0.9rem;
+  }
+
+  .detail-name {
+    font-size: 0.8rem;
+  }
+
+  .detail-amount {
+    font-size: 0.9rem;
+  }
+
+  .no-transactions {
+    padding: 1.5rem 0.8rem;
+  }
+}

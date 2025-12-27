@@ -1,0 +1,301 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  width: 100%;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.login-header {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem 2rem;
+  color: white;
+  text-align: center;
+}
+
+.app-logo {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.app-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.app-tagline {
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.95;
+  font-weight: 300;
+}
+
+.login-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  padding: 2.5rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.welcome-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+}
+
+.login-description {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin: 0 0 2rem 0;
+  line-height: 1.5;
+}
+
+.login-form {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ecf0f1;
+  border-radius: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+.input-wrapper:focus-within {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.country-code {
+  padding: 0 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-group input {
+  flex: 1;
+  padding: 1rem 1rem 1rem 0;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #2c3e50;
+  outline: none;
+}
+
+.form-group input::placeholder {
+  color: #bdc3c7;
+}
+
+.form-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-button {
+  width: 100%;
+  padding: 1.1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.login-button:hover:not(:disabled) {
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+  transform: translateY(-2px);
+}
+
+.login-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button-text {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Tablet and Medium Screens */
+@media (max-width: 768px) {
+  .login-header {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  .app-logo {
+    font-size: 3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .app-title {
+    font-size: 1.8rem;
+  }
+
+  .app-tagline {
+    font-size: 0.9rem;
+  }
+
+  .login-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .welcome-text {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .login-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.4rem;
+  }
+
+  .input-wrapper {
+    border-radius: 10px;
+  }
+
+  .login-button {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 480px) {
+  .login-container {
+    min-height: 100vh;
+  }
+
+  .login-header {
+    padding: 2rem 1rem 1rem;
+  }
+
+  .app-logo {
+    font-size: 2.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .app-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .app-tagline {
+    font-size: 0.85rem;
+  }
+
+  .login-content {
+    padding: 1.8rem 1.2rem 2rem;
+    border-radius: 20px 20px 0 0;
+    margin-top: 0.5rem;
+  }
+
+  .welcome-text {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .login-description {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-wrapper {
+    border-radius: 10px;
+  }
+
+  .country-code {
+    padding: 0 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .form-group input {
+    padding: 0.95rem 0.8rem 0.95rem 0;
+    font-size: 1rem;
+  }
+
+  .login-button {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+  .app-logo {
+    font-size: 2.5rem;
+  }
+
+  .app-title {
+    font-size: 1.4rem;
+  }
+
+  .login-content {
+    padding: 1.5rem 1rem 1.8rem;
+  }
+
+  .welcome-text {
+    font-size: 1.3rem;
+  }
+
+  .login-description {
+    font-size: 0.8rem;
+  }
+}

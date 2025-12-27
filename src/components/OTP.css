@@ -1,0 +1,266 @@
+.otp-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.otp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  gap: 1rem;
+}
+
+.otp-back-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.otp-back-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-2px);
+}
+
+.otp-back-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.otp-title {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.otp-spacer {
+  width: 60px; /* Same width as back button for centering */
+}
+
+.otp-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem 1.5rem;
+  background: white;
+  border-radius: 24px;
+  margin-top: 1rem;
+}
+
+.otp-description {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin: 0 0 2rem 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.otp-mobile {
+  font-weight: 700;
+  color: #667eea;
+}
+
+.otp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.otp-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.otp-box {
+  width: 70px;
+  height: 70px;
+  font-size: 2rem;
+  text-align: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.otp-box:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.otp-box:disabled {
+  background: #ecf0f1;
+  color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.otp-box::placeholder {
+  color: #bdc3c7;
+  font-size: 1.5rem;
+}
+
+.otp-submit-button {
+  width: 100%;
+  padding: 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.otp-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.otp-submit-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.otp-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.otp-submit-button .button-text {
+  display: block;
+}
+
+.otp-resend {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.otp-resend-button {
+  background: none;
+  border: none;
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  text-decoration: underline;
+}
+
+.otp-resend-button:hover:not(:disabled) {
+  color: #764ba2;
+}
+
+.otp-resend-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+  .otp-content {
+    padding: 1.5rem;
+  }
+
+  .otp-boxes {
+    gap: 1rem;
+  }
+
+  .otp-box {
+    width: 60px;
+    height: 60px;
+    font-size: 1.75rem;
+  }
+
+  .otp-header {
+    padding: 1rem 0;
+  }
+
+  .otp-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .otp-container {
+    padding: 0.75rem;
+  }
+
+  .otp-header {
+    padding: 1rem 0 0.75rem 0;
+    gap: 0.5rem;
+  }
+
+  .otp-back-button {
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .otp-title {
+    font-size: 1.2rem;
+  }
+
+  .otp-spacer {
+    display: none;
+  }
+
+  .otp-content {
+    padding: 1.25rem;
+    border-radius: 20px;
+    margin-top: 0.75rem;
+  }
+
+  .otp-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .otp-boxes {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .otp-box {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .otp-form {
+    gap: 1.5rem;
+  }
+
+  .otp-submit-button {
+    padding: 0.9rem;
+    font-size: 1rem;
+  }
+
+  .otp-resend {
+    font-size: 0.85rem;
+  }
+
+  .otp-resend-button {
+    font-size: 0.85rem;
+  }
+}

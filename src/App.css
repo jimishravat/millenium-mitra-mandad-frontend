@@ -1,0 +1,40 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Ensure main content stretches to fill available space */
+main {
+  flex: 1;
+}
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .App {
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    min-height: 100vh;
+  }
+}
+
