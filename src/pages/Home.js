@@ -1,29 +1,80 @@
-import React, { useState } from 'react';
-import BookDetails from '../components/BookDetails';
-import './Home.css';
+import React, { useEffect, useState } from "react";
+import BookDetails from "../components/BookDetails";
+import "./Home.css";
+import { apiPost, AUTH_ENDPOINTS } from "../utils";
+import { useAppContext } from "../contexts";
 
 const Home = () => {
   const [showBookDetails, setShowBookDetails] = useState(false);
 
+  const { setIsAdmin, setUserData, setIsApplicationLoaded } = useAppContext();
+
   const [userData] = useState({
-    name: 'Jimish Shravat',
-    mobile: '9876543210',
+    name: "Jimish Shravat",
+    mobile: "9876543210",
     principal: { count: 3, amount: 5000 },
     loan: { count: 3, amount: 50000 },
     settlement: 0,
     lastTransaction: {
-      date: '16-12-2025',
+      date: "16-12-2025",
       principal: 500,
       loanEMI: 1000,
       interest: 500,
     },
   });
 
+  useEffect(() => {
+    const fetchUserSession = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}${AUTH_ENDPOINTS.USER_SESSION}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+        const data = await response.json();
+        if (data.success) {
+          // User has a valid session
+          if (data.data.isAdmin) {
+            setIsAdmin(true);
+          }
+          fetchUserDetails();
+        } else {
+          // No valid session, redirect to login
+          window.location.href = "/login";
+        }
+      } catch (error) {
+        console.error("Error fetching user session:", error);
+        window.location.href = "/login";
+      }
+    };
+    fetchUserSession();
+  }, []);
+
+  const fetchUserDetails = async () => {
+    try {
+      const response = await apiPost(AUTH_ENDPOINTS.USER_SESSION, {});
+      if (response.success) {
+        // Handle user details
+        setUserData(response.data);
+        setIsApplicationLoaded(true);
+      } else {
+        // Handle error
+      }
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
+
   // Function to determine settlement color class
   const getSettlementColorClass = (amount) => {
-    if (amount > 0) return 'settlement-positive';
-    if (amount < 0) return 'settlement-negative';
-    return 'settlement-neutral';
+    if (amount > 0) return "settlement-positive";
+    if (amount < 0) return "settlement-negative";
+    return "settlement-neutral";
   };
 
   // Handle book details button click
@@ -39,10 +90,7 @@ const Home = () => {
   // Show BookDetails component if user clicked on it
   if (showBookDetails) {
     return (
-      <BookDetails 
-        onBack={handleBackFromBookDetails} 
-        userData={userData}
-      />
+      <BookDetails onBack={handleBackFromBookDetails} userData={userData} />
     );
   }
 
@@ -63,7 +111,9 @@ const Home = () => {
             <p className="user-mobile">+91 {userData.mobile}</p>
           </div>
         </div>
-        <button className="book-button" onClick={handleBookDetailsClick}>Book Details</button>
+        <button className="book-button" onClick={handleBookDetailsClick}>
+          Book Details
+        </button>
       </section>
 
       {/* Summary Cards Section */}
@@ -76,7 +126,9 @@ const Home = () => {
               <span className="card-label">Principal</span>
               <span className="card-count">({userData.principal.count})</span>
             </div>
-            <div className="card-amount">₹{userData.principal.amount.toLocaleString()}</div>
+            <div className="card-amount">
+              ₹{userData.principal.amount.toLocaleString()}
+            </div>
           </div>
 
           {/* Loan Card */}
@@ -85,11 +137,17 @@ const Home = () => {
               <span className="card-label">Loan</span>
               <span className="card-count">({userData.loan.count})</span>
             </div>
-            <div className="card-amount">₹{userData.loan.amount.toLocaleString()}</div>
+            <div className="card-amount">
+              ₹{userData.loan.amount.toLocaleString()}
+            </div>
           </div>
 
           {/* Settlement Card */}
-          <div className={`summary-card settlement-card ${getSettlementColorClass(userData.settlement)}`}>
+          <div
+            className={`summary-card settlement-card ${getSettlementColorClass(
+              userData.settlement
+            )}`}
+          >
             <div className="card-header">
               <span className="card-label">Settlement</span>
             </div>
@@ -107,23 +165,33 @@ const Home = () => {
         <div className="transaction-details">
           <div className="transaction-item">
             <span className="transaction-label">Principal</span>
-            <span className="transaction-amount">₹{userData.lastTransaction.principal}</span>
+            <span className="transaction-amount">
+              ₹{userData.lastTransaction.principal}
+            </span>
           </div>
           <div className="transaction-item">
             <span className="transaction-label">Loan EMI</span>
-            <span className="transaction-amount">₹{userData.lastTransaction.loanEMI}</span>
+            <span className="transaction-amount">
+              ₹{userData.lastTransaction.loanEMI}
+            </span>
           </div>
           <div className="transaction-item">
             <span className="transaction-label">Interest</span>
-            <span className="transaction-amount">₹{userData.lastTransaction.interest}</span>
+            <span className="transaction-amount">
+              ₹{userData.lastTransaction.interest}
+            </span>
           </div>
         </div>
       </section>
 
       {/* Quick Actions */}
       <section className="quick-actions">
-        <button className="action-button primary-action">View All Transactions</button>
-        <button className="action-button secondary-action">Generate Report</button>
+        <button className="action-button primary-action">
+          View All Transactions
+        </button>
+        <button className="action-button secondary-action">
+          Generate Report
+        </button>
       </section>
     </div>
   );

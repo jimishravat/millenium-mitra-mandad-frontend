@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useError } from '../contexts/ErrorContext';
-import { apiPost, AUTH_ENDPOINTS } from '../utils';
-import './ChangePassword.css';
+import React, { useState } from "react";
+import { useError } from "../contexts/ErrorContext";
+import { apiPost, AUTH_ENDPOINTS } from "../utils";
+import "./ChangePassword.css";
 
 const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [verifyPassword, setVerifyPassword] = useState('');
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [verifyPassword, setVerifyPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -20,32 +20,32 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
 
     // Validation
     if (!oldPassword) {
-      showError('Please enter your old password');
+      showError("Please enter your old password");
       return;
     }
 
     if (!newPassword) {
-      showError('Please enter your new password');
+      showError("Please enter your new password");
       return;
     }
 
     if (!verifyPassword) {
-      showError('Please verify your new password');
+      showError("Please verify your new password");
       return;
     }
 
     if (newPassword.length < 6) {
-      showError('Password must be at least 6 characters long');
+      showError("Password must be at least 6 characters long");
       return;
     }
 
     if (newPassword !== verifyPassword) {
-      showError('New passwords do not match');
+      showError("New passwords do not match");
       return;
     }
 
     if (oldPassword === newPassword) {
-      showError('New password must be different from old password');
+      showError("New password must be different from old password");
       return;
     }
 
@@ -55,21 +55,26 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
       const response = await apiPost(AUTH_ENDPOINTS.CHANGE_PASSWORD, {
         oldPassword,
         newPassword,
+        verifyPassword,
       });
 
-      console.log('Password changed successfully:', response.data);
-      
+      console.log("Password changed successfully:", response.data);
+
       // Reset form
-      setOldPassword('');
-      setNewPassword('');
-      setVerifyPassword('');
-      
+      setOldPassword("");
+      setNewPassword("");
+      setVerifyPassword("");
+
       // Call success callback
-      if (onSuccess) {
-        onSuccess();
+      if (response.success) {
+        window.location.href = "/home";
+      } else {
+        onBack();
       }
     } catch (error) {
-      showError(error.message || 'Failed to change password. Please try again.');
+      showError(
+        error.message || "Failed to change password. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -104,7 +109,7 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
             <label htmlFor="oldPassword">Old Password</label>
             <div className="change-password-input-wrapper">
               <input
-                type={showOldPassword ? 'text' : 'password'}
+                type={showOldPassword ? "text" : "password"}
                 id="oldPassword"
                 value={oldPassword}
                 onChange={(e) => setOldPassword(e.target.value)}
@@ -119,7 +124,7 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
                 disabled={isDisabled}
                 aria-label="Toggle password visibility"
               >
-                {showOldPassword ? '👁️' : '👁️‍🗨️'}
+                {showOldPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </div>
           </div>
@@ -129,7 +134,7 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
             <label htmlFor="newPassword">New Password</label>
             <div className="change-password-input-wrapper">
               <input
-                type={showNewPassword ? 'text' : 'password'}
+                type={showNewPassword ? "text" : "password"}
                 id="newPassword"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
@@ -144,7 +149,7 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
                 disabled={isDisabled}
                 aria-label="Toggle password visibility"
               >
-                {showNewPassword ? '👁️' : '👁️‍🗨️'}
+                {showNewPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </div>
           </div>
@@ -154,7 +159,7 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
             <label htmlFor="verifyPassword">Verify New Password</label>
             <div className="change-password-input-wrapper">
               <input
-                type={showVerifyPassword ? 'text' : 'password'}
+                type={showVerifyPassword ? "text" : "password"}
                 id="verifyPassword"
                 value={verifyPassword}
                 onChange={(e) => setVerifyPassword(e.target.value)}
@@ -169,7 +174,7 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
                 disabled={isDisabled}
                 aria-label="Toggle password visibility"
               >
-                {showVerifyPassword ? '👁️' : '👁️‍🗨️'}
+                {showVerifyPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </div>
           </div>
@@ -180,7 +185,7 @@ const ChangePassword = ({ onSuccess, loading: parentLoading, onBack }) => {
             disabled={isDisabled}
           >
             <span className="button-text">
-              {loading ? 'Changing Password...' : 'Change Password'}
+              {loading ? "Changing Password..." : "Change Password"}
             </span>
           </button>
         </form>

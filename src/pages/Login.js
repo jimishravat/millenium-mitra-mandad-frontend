@@ -35,6 +35,8 @@ const Login = () => {
         setShowPasswordVerification(false);
         setShowChangePassword(true);
         
+      }else {
+        window.location.href = "/home";
       }
     } catch (error) {
       showError(error.message || "Login failed. Please try again.");

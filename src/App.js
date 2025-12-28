@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
 import ErrorModal from './components/ErrorModal';
-import { ErrorProvider } from './contexts/ErrorContext';
+import { ErrorProvider, AppProvider } from './contexts';
 import Home from './pages/Home';
 import Users from './pages/Users';
 import Transactions from './pages/Transactions';
@@ -44,11 +44,13 @@ function AppContent() {
 
 function App() {
   return (
-    <ErrorProvider>
-      <Router>
-        <AppContent />
-      </Router>
-    </ErrorProvider>
+    <AppProvider>
+      <ErrorProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </ErrorProvider>
+    </AppProvider>
   );
 }
 
