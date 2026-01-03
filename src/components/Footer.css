@@ -59,6 +59,21 @@
   color: #95a5a6;
 }
 
+.footer-bottom p {
+  margin: 0.3rem 0;
+}
+
+.footer-bottom a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .footer-content {

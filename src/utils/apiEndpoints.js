@@ -14,8 +14,8 @@ export const AUTH_ENDPOINTS = {
 
 // User endpoints
 export const USER_ENDPOINTS = {
- USERS_DETAILS : '/user-details',
- BOOK_DETAILS : '/book-details',
+ USERS_DETAILS : '/user/user-details',
+ BOOK_DETAILS : '/user/book-details',
  BOOK_TRANSACTION_HISTORY : '/book-transaction-history',
 };
 

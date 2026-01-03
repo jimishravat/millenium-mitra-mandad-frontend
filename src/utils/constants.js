@@ -1,0 +1,5 @@
+export const USER_MAP = {
+  USER: 0,
+  BOOK_DETAILS: 1,
+  BOOK_TRANSACTION_HISTORY: 2,
+};

@@ -18,3 +18,5 @@ export {
   ADMIN_ENDPOINTS,
   HEALTH_CHECK,
 } from './apiEndpoints';
+
+export { formatDateToDDMMYYYY } from './dateFormatter';
