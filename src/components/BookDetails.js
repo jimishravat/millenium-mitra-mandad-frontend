@@ -1,38 +1,50 @@
-import React from 'react';
-import './BookDetails.css';
-import BookTransactionDetails from './BookTransactionDetails';
+import React, { useEffect, useState } from "react";
+import "./BookDetails.css";
+import BookTransactionDetails from "./BookTransactionDetails";
+import { USER_ENDPOINTS } from "../utils";
+import { useAppContext } from "../contexts";
 
 const BookDetails = ({ onBack, userData }) => {
+  const { bookData, setBookData } = useAppContext();
+  const [isBooksFetched, setIsBooksFetched] = useState(false);
   // Sample books data - can be replaced with API call
-  const [books] = React.useState([
-    {
-      id: 1,
-      bookNo: '05',
-      bookName: userData.name,
-      principal: 5000,
-      loan: 50000,
-    },
-    {
-      id: 2,
-      bookNo: '06',
-      bookName: userData.name,
-      principal: 3000,
-      loan: 40000,
-    },
-    {
-      id: 3,
-      bookNo: '07',
-      bookName: userData.name,
-      principal: 2000,
-      loan: 35000,
-    },
-  ]);
+
+  // Here i want a API call to fetch books data for the user
+  useEffect(() => {
+    // Example API call
+    fetchBooksForUser();
+  }, []);
+
+  // Function to simulate fetching books for a user
+  const fetchBooksForUser = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}${USER_ENDPOINTS.BOOK_DETAILS}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      const result = await response.json();
+      if (result.success) {
+        setBookData(result.data);
+      }
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    } finally {
+      setIsBooksFetched(true);
+    }
+  };
+  // Replace with actual API call
 
   const [expandedBookId, setExpandedBookId] = React.useState(null);
   const [selectedBook, setSelectedBook] = React.useState(null);
 
   const handleViewMore = (bookId) => {
-    const book = books.find(b => b.id === bookId);
+    const book = bookData.find((b) => b.bookID === bookId);
     setSelectedBook(book);
   };
 
@@ -43,12 +55,16 @@ const BookDetails = ({ onBack, userData }) => {
   // If a book is selected, show transaction details
   if (selectedBook) {
     return (
-      <BookTransactionDetails 
-        onBack={handleBackFromTransactions} 
+      <BookTransactionDetails
+        onBack={handleBackFromTransactions}
         book={selectedBook}
         userData={userData}
       />
     );
+  }
+
+  if (!isBooksFetched) {
+    return <div>Loading books...</div>;
   }
 
   return (
@@ -61,9 +77,9 @@ const BookDetails = ({ onBack, userData }) => {
           onClick={onBack}
           aria-label="Go back to home"
         >
-          ← Back
+          Back to Home
         </button>
-        <h1 className="book-details-title">Books</h1>
+        <h1 className="book-details-title">User Books Details</h1>
         <div className="book-details-spacer"></div>
       </div>
 
@@ -71,20 +87,50 @@ const BookDetails = ({ onBack, userData }) => {
       <div className="book-details-content">
         {/* User Info Section */}
         <div className="book-details-user-section">
-          <div className="book-details-user-avatar">👤</div>
-          <div className="book-details-user-info">
-            <h2 className="book-details-user-name">{userData.name}</h2>
-            <p className="book-details-user-mobile">+91 {userData.mobile}</p>
+          <div className="book-details-user-content">
+            <div className="book-details-user-avatar">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ width: "100%", height: "100%" }}
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div className="book-details-user-info">
+              <h2 className="book-details-user-name">
+                {userData.userDetails.name}
+              </h2>
+              <p className="book-details-user-mobile">
+                +91 {userData.userDetails.mobile}
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Books Grid */}
         <div className="books-list">
-          {books.map((book) => (
-            <div key={book.id} className="book-card">
+          {bookData.map((book) => (
+            <div key={book.bookID} className="book-card">
               <div className="book-card-header">
-                <span className="book-no-label">Book No</span>
-                <span className="book-no-value">{book.bookNo}</span>
+                <div>
+                  <span className="book-no-label">Book No</span>
+                  <span className="book-no-value">{book.bookID}</span>
+                </div>
+                <button
+                  type="button"
+                  className="book-card-header-button"
+                  onClick={() => handleViewMore(book.bookID)}
+                  title="View transaction details"
+                >
+                  Details
+                </button>
               </div>
 
               <div className="book-card-item">
@@ -94,21 +140,26 @@ const BookDetails = ({ onBack, userData }) => {
 
               <div className="book-card-item">
                 <span className="book-card-label">Principal</span>
-                <span className="book-card-value">₹{book.principal.toLocaleString()}</span>
+                <span className="book-card-value">
+                  ₹{book.currentPrincipalAmount.toLocaleString()}
+                </span>
               </div>
-
-              <div className="book-card-item">
-                <span className="book-card-label">Loan</span>
-                <span className="book-card-value">₹{book.loan.toLocaleString()}</span>
-              </div>
-
-              <button
-                type="button"
-                className="book-card-view-more"
-                onClick={() => handleViewMore(book.id)}
-              >
-                {expandedBookId === book.id ? 'Show Less' : 'View Details'}
-              </button>
+              {book.loanAmount > 0 && (
+                <div className="book-card-item">
+                  <span className="book-card-label">Loan</span>
+                  <span className="book-card-value">
+                    ₹{book.loanAmount.toLocaleString()}
+                  </span>
+                </div>
+              )}
+              {book.settlementAmount > 0 && (
+                <div className="book-card-item">
+                  <span className="book-card-label">Settlement</span>
+                  <span className="book-card-value">
+                    ₹{book.settlementAmount.toLocaleString()}
+                  </span>
+                </div>
+              )}
             </div>
           ))}
         </div>

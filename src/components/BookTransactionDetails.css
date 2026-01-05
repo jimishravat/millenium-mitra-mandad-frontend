@@ -19,21 +19,19 @@
 
 /* Header */
 .book-transaction-header {
-  background: #667eea;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 1rem;
   gap: 1rem;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .book-transaction-back-button {
-  background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
+  color: black;
   padding: 0.75rem 1.25rem;
-  border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -53,7 +51,7 @@
 }
 
 .book-transaction-title {
-  color: white;
+  color: black;
   font-size: 1.5rem;
   margin: 0;
   font-weight: 700;
@@ -68,17 +66,16 @@
 /* Content */
 .book-transaction-content {
   flex: 1;
-  padding: 1.5rem 1rem;
+  padding: 2rem;
   overflow-y: auto;
 }
 
 /* Book Info Card */
 .book-info-card {
   background: white;
-  border: 1px solid #ecf0f1;
-  border-radius: 12px;
+  border: 1px solid #e0dbd7;
   margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   animation: slideUp 0.6s ease-out 0.1s both;
 }
 
@@ -94,10 +91,9 @@
 }
 
 .book-info-header {
-  background: #667eea;
+  background: linear-gradient(135deg, #a0816d 0%, #9f7856 100%);
   color: white;
   padding: 1rem 1.5rem;
-  border-radius: 12px 12px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,28 +122,28 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #ecf0f1;
-  transition: background-color 0.3s ease;
+  border-bottom: 1px solid #f0eae5;
+  transition: all 0.2s ease;
 }
 
 .book-info-item:nth-child(2) {
-  background: #f0f4ff;
+  background: #ffffff;
 }
 
 .book-info-item:nth-child(3) {
-  background: #f5f9ff;
+  background: #ffffff;
 }
 
 .book-info-item:nth-child(4) {
-  background: #f0f9ff;
+  background: #ffffff;
 }
 
 .book-info-item:nth-child(5) {
-  background: #f5f4ff;
+  background: #ffffff;
 }
 
 .book-info-item:nth-child(6) {
-  background: #f0f4ff;
+  background: #ffffff;
 }
 
 .book-info-item:last-child {
@@ -155,7 +151,7 @@
 }
 
 .book-info-item:hover {
-  background-color: rgba(102, 126, 234, 0.08);
+  background-color: #faf7f3;
 }
 
 .book-info-label {
@@ -184,30 +180,29 @@
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 12px;
+  padding: 1.2rem;
+  background: white;
+  border: 1px solid #e0dbd7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .nav-button {
-  background: #667eea;
+  background: #9f7856;
   color: white;
-  border: none;
+  border: 1px solid #8d6f56;
   padding: 0.65rem 1.3rem;
-  border-radius: 8px;
   font-size: 1.15rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
   min-width: 50px;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 1px 3px rgba(159, 120, 86, 0.15);
 }
 
 .nav-button:hover {
-  background: #5568d3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: #8d6f56;
+  box-shadow: 0 2px 6px rgba(159, 120, 86, 0.25);
 }
 
 .nav-button:active {
@@ -231,12 +226,10 @@
 
 .transaction-card {
   background: white;
-  border: 2px solid #ecf0f1;
-  border-left: 5px solid #667eea;
-  border-radius: 12px;
+  border: 1px solid #e0dbd7;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(102, 126, 234, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
   animation: slideUp 0.6s ease-out both;
   position: relative;
 }
@@ -248,47 +241,38 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: #667eea;
 }
 
 .transaction-card:hover {
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
-  transform: translateY(-4px);
-  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(159, 120, 86, 0.12);
+  border-color: #d4cec8;
 }
 
 .transaction-card:nth-child(1) {
-  border-left-color: #667eea;
+  border-top-color: #9f7856;
 }
 
 .transaction-card:nth-child(1)::before {
-  background: #667eea;
+  background: #9f7856;
 }
 
-.transaction-card:nth-child(2) {
-  border-left-color: #27ae60;
-}
-
-.transaction-card:nth-child(2)::before {
-  background: #27ae60;
-}
-
-.transaction-card:nth-child(3) {
-  border-left-color: #e74c3c;
-}
-
-.transaction-card:nth-child(3)::before {
-  background: #e74c3c;
+.transaction-card:nth-child(1):hover {
+  border-top-color: #8d6f56;
 }
 
 .transaction-header {
-  background: #f8f9fa;
+  background: #ffffff;
   color: #2c3e50;
   padding: 1.2rem 1.5rem;
-  border-bottom: 2px solid #ecf0f1;
+  border-bottom: 1px solid #f0eae5;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+.transaction-card:hover .transaction-header {
+  background: #faf7f3;
 }
 
 .transaction-header::before {
@@ -297,19 +281,39 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #667eea;
+  background: #9f7856;
 }
 
 .transaction-card:nth-child(1) .transaction-header::before {
-  background: #667eea;
+  background: #9f7856;
+}
+
+.transaction-card:nth-child(2) {
+  border-top-color: #27ae60;
+}
+
+.transaction-card:nth-child(2)::before {
+  background: #27ae60;
+}
+
+.transaction-card:nth-child(2):hover {
+  border-top-color: #219653;
 }
 
 .transaction-card:nth-child(2) .transaction-header::before {
   background: #27ae60;
 }
 
-.transaction-card:nth-child(3) .transaction-header::before {
+.transaction-card:nth-child(3) {
+  border-top-color: #e74c3c;
+}
+
+.transaction-card:nth-child(3)::before {
   background: #e74c3c;
+}
+
+.transaction-card:nth-child(3):hover {
+  border-top-color: #c0392b;
 }
 
 .transaction-label {
@@ -333,30 +337,26 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  border-radius: 8px;
-  background: #f8f9fa;
-  transition: all 0.3s ease;
-  border-left: 3px solid #ecf0f1;
-}
-
-.detail-item:hover {
-  background: #f0f4ff;
-  border-left-color: #667eea;
-}
-
-.transaction-card:nth-child(2) .detail-item:hover {
-  background: #f0fdf4;
-  border-left-color: #27ae60;
-}
-
-.transaction-card:nth-child(3) .detail-item:hover {
-  background: #fef2f2;
-  border-left-color: #e74c3c;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f0eae5;
+  border-left: none;
 }
 
 .detail-item:last-child {
   border-bottom: none;
-  padding-bottom: 0.75rem;
+}
+
+.detail-item:hover {
+  background: #faf7f3;
+}
+
+.transaction-card:nth-child(2) .detail-item:hover {
+  background: #f0fdf4;
+}
+
+.transaction-card:nth-child(3) .detail-item:hover {
+  background: #fef2f2;
 }
 
 .detail-name {
@@ -369,12 +369,11 @@
 }
 
 .detail-amount {
-  color: #667eea;
+  color: #9f7856;
   font-weight: 700;
   font-size: 1.2rem;
-  background: rgba(102, 126, 234, 0.1);
+  background: rgba(159, 120, 86, 0.1);
   padding: 0.4rem 0.8rem;
-  border-radius: 6px;
 }
 
 .detail-amount.negative {
@@ -402,8 +401,9 @@
   text-align: center;
   padding: 3rem 1.5rem;
   color: #7f8c8d;
-  background: #f8f9fa;
-  border-radius: 12px;
+  background: white;
+  border: 1px solid #e0dbd7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .no-transactions p {
@@ -524,10 +524,6 @@
 
   .transactions-cards {
     gap: 1rem;
-  }
-
-  .transaction-card {
-    border-radius: 10px;
   }
 
   .transaction-header {

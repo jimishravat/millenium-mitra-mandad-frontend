@@ -1,0 +1,242 @@
+.add-edit-user {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: #fafafa;
+}
+
+.form-header {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+}
+
+.back-button {
+  padding: 0.6rem 1rem;
+  background-color: #9f7856;
+  color: white;
+  border: 1px solid #8d6f56;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(159, 120, 86, 0.15);
+  height: fit-content;
+  white-space: nowrap;
+}
+
+.back-button:hover {
+  background-color: #8d6f56;
+  box-shadow: 0 2px 6px rgba(159, 120, 86, 0.25);
+}
+
+.back-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-header h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.form-container {
+  max-width: 600px;
+  background: white;
+  padding: 2rem;
+  border: 1px solid #e0dbd7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.required {
+  color: #e74c3c;
+  font-weight: 700;
+}
+
+.form-input {
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  border: 1px solid #e0dbd7;
+  border-top: 3px solid #9f7856;
+  background-color: white;
+  color: #2c3e50;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-family: inherit;
+}
+
+.form-input:focus {
+  outline: none;
+  border-top-color: #8d6f56;
+  box-shadow: 0 2px 6px rgba(159, 120, 86, 0.15);
+}
+
+.form-input:disabled {
+  background-color: #f5f5f5;
+  color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.form-input.error {
+  border-color: #e74c3c;
+  border-top-color: #e74c3c;
+  box-shadow: 0 1px 3px rgba(231, 76, 60, 0.15);
+}
+
+.form-input.error:focus {
+  border-top-color: #c0392b;
+  box-shadow: 0 2px 6px rgba(231, 76, 60, 0.25);
+}
+
+.form-input::placeholder {
+  color: #95a5a6;
+}
+
+.error-message {
+  font-size: 0.8rem;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: #9f7856;
+  color: white;
+  border: 1px solid #8d6f56;
+  box-shadow: 0 1px 3px rgba(159, 120, 86, 0.15);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #8d6f56;
+  box-shadow: 0 2px 6px rgba(159, 120, 86, 0.25);
+}
+
+.btn-secondary {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border: 1px solid #d0d8dc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #bdc3c7;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .add-edit-user {
+    padding: 1.5rem;
+  }
+
+  .form-header {
+    gap: 1rem;
+  }
+
+  .form-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 0.8rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.7rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-edit-user {
+    padding: 1rem;
+  }
+
+  .form-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .form-container {
+    padding: 1rem;
+  }
+
+  .form-input {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 0.65rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

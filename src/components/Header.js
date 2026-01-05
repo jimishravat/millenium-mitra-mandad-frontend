@@ -18,18 +18,22 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}${AUTH_ENDPOINTS.LOGOUT}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      }
-    );
-    const data = await response.json();
-    if(data.success){
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}${AUTH_ENDPOINTS.LOGOUT}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      const data = await response.json();
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      // Always clear application state and navigate to login, regardless of API response
       setIsApplicationLoaded(false);
       navigate("/login", { replace: true });
     }
@@ -52,33 +56,36 @@ const Header = () => {
                 Home
               </Link>
             </li>
-            <li>
-              <Link to="/home/users" className="nav-link">
-                Users
-              </Link>
-            </li>
-            <li>
-              <Link to="/home/transactions" className="nav-link">
-                Transactions
-              </Link>
-            </li>
-            <li>
-              <Link to="/home/reports" className="nav-link">
-                Reports
-              </Link>
-            </li>
-            <li>
-              <Link to="/login" className="nav-link nav-link-login">
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/login" className="nav-link nav-link-login">
-                Logout
-              </Link>
-            </li>
+            {isAdmin && (
+              <>
+                <li>
+                  <Link to="/home/users" className="nav-link">
+                    Users
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/home/transactions" className="nav-link">
+                    Transactions
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/home/reports" className="nav-link">
+                    Reports
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
+
+        {/* Desktop Logout Button */}
+        <button
+          className="logout-button-desktop"
+          onClick={handleLogout}
+          title="Logout"
+        >
+          Logout
+        </button>
 
         {/* Mobile Menu */}
         <div className="mobile-menu-actions">
@@ -169,25 +176,6 @@ const Header = () => {
                 onClick={closeDrawer}
               >
                 Reports
-              </Link>
-            </li>
-            <li className="divider"></li>
-            <li>
-              <Link
-                to="/login"
-                className="nav-link-mobile"
-                onClick={closeDrawer}
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/login"
-                className="nav-link-mobile"
-                onClick={closeDrawer}
-              >
-                Logout
               </Link>
             </li>
           </ul>

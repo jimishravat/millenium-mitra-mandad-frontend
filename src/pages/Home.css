@@ -50,15 +50,15 @@
 
 /* User Profile Card */
 .user-profile-card {
-  background: linear-gradient(135deg, #f8e8f5 0%, #e8f5f7 100%);
+  background: white;
   margin: 0;
   padding: 2rem;
-  border-radius: 0;
+  border: 1px solid #e0dbd7;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  box-shadow: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   width: calc(100% - 2rem);
   animation: slideUp 0.6s ease-out 0.1s both;
 }
@@ -85,7 +85,7 @@
 
 .user-avatar {
   font-size: 2.5rem;
-  background: rgba(102, 126, 234, 0.15);
+  background: rgba(159, 120, 86, 0.15);
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -93,7 +93,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: #667eea;
+  color: #9f7856;
 }
 
 .user-details {
@@ -114,23 +114,23 @@
 }
 
 .book-button {
-  background: #667eea;
+  background: #9f7856;
   color: white;
-  border: none;
+  border: 1px solid #8d6f56;
   padding: 0.5rem 1rem;
-  border-radius: 6px;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
   flex-shrink: 0;
   align-self: flex-start;
+  box-shadow: 0 1px 3px rgba(159, 120, 86, 0.15);
 }
 
 .book-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: #8d6f56;
+  box-shadow: 0 2px 6px rgba(159, 120, 86, 0.25);
 }
 
 .book-button:active {
@@ -161,27 +161,27 @@
 .summary-card {
   background: white;
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid #667eea;
-  transition: all 0.3s ease;
+  border: 1px solid #e0dbd7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-top: 3px solid #9f7856;
+  transition: all 0.2s ease;
 }
 
 .summary-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 4px 12px rgba(159, 120, 86, 0.12);
+  border-top-color: #8d6f56;
 }
 
 .principal-card {
-  border-left-color: #667eea;
+  border-top-color: #9f7856;
 }
 
 .loan-card {
-  border-left-color: #764ba2;
+  border-top-color: #27ae60;
 }
 
 .settlement-card {
-  border-left-color: #5f47a6;
+  border-top-color: #5f47a6;
 }
 
 .settlement-card.settlement-positive .card-amount {
@@ -190,7 +190,7 @@
 }
 
 .settlement-card.settlement-positive {
-  border-left-color: #27ae60;
+  border-top-color: #27ae60;
 }
 
 .settlement-card.settlement-negative .card-amount {
@@ -199,7 +199,7 @@
 }
 
 .settlement-card.settlement-negative {
-  border-left-color: #e74c3c;
+  border-top-color: #e74c3c;
 }
 
 .settlement-card.settlement-neutral .card-amount {
@@ -242,21 +242,27 @@
 
 .transaction-date-badge {
   display: inline-block;
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  background: white;
+  color: #9f7856;
+  padding: 0.6rem 1.2rem;
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  border: 1px solid #e0dbd7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.transaction-date-badge:hover {
+  background: #faf7f3;
+  border-color: #d4cec8;
 }
 
 .transaction-details {
   background: white;
-  border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0dbd7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .transaction-item {
@@ -264,23 +270,30 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 1px solid #ecf0f1;
+  border-bottom: 1px solid #f0eae5;
+  transition: background-color 0.2s ease;
 }
 
 .transaction-item:last-child {
   border-bottom: none;
 }
 
+.transaction-item:hover {
+  background-color: #faf7f3;
+}
+
 .transaction-label {
   color: #2c3e50;
   font-weight: 500;
   font-size: 0.95rem;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
 }
 
 .transaction-amount {
-  color: #667eea;
+  color: #9f7856;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 /* Quick Actions */

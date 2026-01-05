@@ -7,10 +7,7 @@ import { formatDateToDDMMYYYY } from "../utils";
 const Home = () => {
   const [showBookDetails, setShowBookDetails] = useState(false);
 
-  const {
-    isApplicationLoaded,
-    userData,
-  } = useAppContext();
+  const { isApplicationLoaded, userData } = useAppContext();
 
   // const [userData] = useState({
   //   name: "Jimish Shravat",
@@ -63,7 +60,16 @@ const Home = () => {
         <section className="user-profile-card">
           <div className="user-info">
             <div className="user-avatar">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '100%', height: '100%' }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ width: "100%", height: "100%" }}
+              >
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
@@ -131,42 +137,17 @@ const Home = () => {
           <div className="transaction-details">
             {Object.entries(userData.lastTransactionDetails).map(
               ([key, value]) => {
-                if(value === 0) return null; // Skip zero amount entries
+                if (value === 0) return null; // Skip zero amount entries
                 return (
                   <div className="transaction-item">
                     <span className="transaction-label">{key}</span>
-                    <span className="transaction-amount">
-                      ₹{value}
-                    </span>
+                    <span className="transaction-amount">₹{value}</span>
                   </div>
                 );
               }
             )}
-
-            {/* <div className="transaction-item">
-              <span className="transaction-label">Loan EMI</span>
-              <span className="transaction-amount">
-                ₹{userData.lastTransactionDetails.loanEMI}
-              </span>
-            </div>
-            <div className="transaction-item">
-              <span className="transaction-label">Interest</span>
-              <span className="transaction-amount">
-                ₹{userData.lastTransactionDetails.loanInterestAmount}
-              </span>
-            </div> */}
           </div>
         </section>
-
-        {/* Quick Actions */}
-        {/* <section className="quick-actions">
-          <button className="action-button primary-action">
-            View All Transactions
-          </button>
-          <button className="action-button secondary-action">
-            Generate Report
-          </button>
-        </section> */}
       </div>
     );
   } else {

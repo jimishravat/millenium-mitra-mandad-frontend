@@ -107,7 +107,8 @@
 
 .book-id-input:focus {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15), 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15),
+    0 2px 8px rgba(102, 126, 234, 0.2);
   border-color: #667eea;
 }
 
@@ -515,8 +516,7 @@
     min-width: fit-content;
   }
 
-  .detail-label::after,
-  .transaction-label::after {
+  .detail-label::after {
     content: " : ";
     font-weight: 700;
   }

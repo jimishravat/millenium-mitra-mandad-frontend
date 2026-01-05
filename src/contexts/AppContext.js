@@ -11,6 +11,8 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [bookData, setBookData] = useState(null);
+  const [transactionsData, setTransactionsData] = useState(null);
   const [isApplicationLoaded, setIsApplicationLoaded] = useState(false);
   const [adminData, setAdminData] = useState({
     allUserDetails: {},
@@ -22,10 +24,15 @@ export const AppProvider = ({ children }) => {
     // States
     isAdmin,
     userData,
+    bookData,
     isApplicationLoaded,
-
+    transactionsData,
+    adminData,
     // Setters
     setIsAdmin,
+    setAdminData,
+    setTransactionsData,
+    setBookData,
     setUserData,
     setIsApplicationLoaded,
   };

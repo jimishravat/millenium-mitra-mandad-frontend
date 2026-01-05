@@ -1,18 +1,24 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Main from './components/Main';
-import ErrorModal from './components/ErrorModal';
-import { ErrorProvider, AppProvider, useAppContext } from './contexts';
-import { AUTH_ENDPOINTS, USER_ENDPOINTS } from './utils';
-import Home from './pages/Home';
-import Users from './pages/Users';
-import Transactions from './pages/Transactions';
-import Reports from './pages/Reports';
-import Login from './pages/Login';
-import NotFound from './pages/NotFound';
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Main from "./components/Main";
+import ErrorModal from "./components/ErrorModal";
+import { ErrorProvider, AppProvider, useAppContext } from "./contexts";
+import { ADMIN_ENDPOINTS, AUTH_ENDPOINTS, USER_ENDPOINTS } from "./utils";
+import Home from "./pages/Home";
+import Users from "./pages/Users";
+import Transactions from "./pages/Transactions";
+import Reports from "./pages/Reports";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
 // Protected Route Component
 function ProtectedRoute({ children, requiresAdmin = false }) {
@@ -21,7 +27,18 @@ function ProtectedRoute({ children, requiresAdmin = false }) {
 
   // If app is still loading, show loading message
   if (!isApplicationLoaded) {
-    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Loading...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        Loading...
+      </div>
+    );
   }
 
   // If user is not logged in (no userData), redirect to login
@@ -31,7 +48,13 @@ function ProtectedRoute({ children, requiresAdmin = false }) {
 
   // If route requires admin and user is not admin, show Unauthorised page
   if (requiresAdmin && !isAdmin) {
-    return <NotFound title="Unauthorised" message="You don't have permission to access this page." errorCode="403" />;
+    return (
+      <NotFound
+        title="Unauthorised"
+        message="You don't have permission to access this page."
+        errorCode="403"
+      />
+    );
   }
 
   return children;
@@ -39,8 +62,16 @@ function ProtectedRoute({ children, requiresAdmin = false }) {
 
 function AppContent() {
   const location = useLocation();
-  const isLoginPage = location.pathname === '/login';
-  const { isApplicationLoaded, userData, setIsAdmin, setUserData, setIsApplicationLoaded } = useAppContext();
+  const isLoginPage = location.pathname === "/login";
+  const {
+    isApplicationLoaded,
+    userData,
+    setIsAdmin,
+    adminData,
+    setAdminData,
+    setUserData,
+    setIsApplicationLoaded,
+  } = useAppContext();
 
   // Fetch user session on app load or when navigating to protected routes
   useEffect(() => {
@@ -61,7 +92,7 @@ function AppContent() {
           }
         );
         const data = await response.json();
-        
+
         if (data.success) {
           // User has a valid session
           if (data.data.isAdmin) {
