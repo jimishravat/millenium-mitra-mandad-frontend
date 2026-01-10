@@ -82,8 +82,8 @@ const Login = () => {
         <div className="login-container">
           <div className="login-header">
             <div className="app-logo">💰</div>
-            <h1 className="app-title">Mitra Mandad</h1>
-            <p className="app-tagline">Smart Transaction Management</p>
+            <h1 className="app-title">Millenium Mitra Mandand</h1>
+            <p className="app-tagline">Your own savings account</p>
           </div>
 
           <div className="login-content">
