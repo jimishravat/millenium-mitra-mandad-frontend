@@ -19,6 +19,7 @@ import Transactions from "./pages/Transactions";
 import Reports from "./pages/Reports";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
 
 // Protected Route Component
 function ProtectedRoute({ children, requiresAdmin = false }) {
@@ -193,6 +194,15 @@ function AppContent() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/home/profile"
+              element={
+                <ProtectedRoute requiresAdmin={true}>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Main>

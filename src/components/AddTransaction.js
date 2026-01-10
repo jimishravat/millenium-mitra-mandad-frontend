@@ -1,14 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddTransaction.css";
+import { useAppContext } from "../contexts";
+import { ADMIN_ENDPOINTS, apiPost } from "../utils";
 
 const AddTransaction = ({ onBack }) => {
   const [bookId, setBookId] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [bookDetails, setBookDetails] = useState(null);
   const [lastTransaction, setLastTransaction] = useState(null);
-  const [multiplier, setMultiplier] = useState("1x");
+  const [multiplier, setMultiplier] = useState(1);
   const [transactionType, setTransactionType] = useState("REGULAR");
   const [formData, setFormData] = useState({});
+
+  const { adminData, setAdminData } = useAppContext();
+
+  useEffect(() => {
+    if (bookId && adminData.allBooksDetails[bookId]) {
+      setFormData({
+        ...formData,
+        principalAmount: adminData.adminConfig.defaultPrincipalAmount || 0,
+        loanInterestAmount:
+          (adminData.allBooksDetails[bookId].loanAmount *
+            adminData.adminConfig.interestPerMonth) /
+            100 || 0,
+        amountReturned: 0,
+        penaltyAmount: 0,
+      });
+    }
+  }, [bookId, transactionType]);
+  useEffect(() => {
+    if (
+      transactionType === "REGULAR" &&
+      bookId &&
+      adminData.allBooksDetails[bookId]
+    ) {
+      setFormData({
+        ...formData,
+        principalAmount:
+          adminData.adminConfig.defaultPrincipalAmount * multiplier,
+        loanInterestAmount:
+          ((adminData.allBooksDetails[bookId].loanAmount *
+            adminData.adminConfig.interestPerMonth) /
+            100) *
+          multiplier,
+      });
+    }
+  }, [multiplier]);
 
   // Mock data for book details
   const mockBooks = {
@@ -52,10 +89,10 @@ const AddTransaction = ({ onBack }) => {
       return;
     }
 
-    if (id && mockBooks[id]) {
+    if (id && adminData.allBooksDetails[id]) {
       setBookId(id);
-      setBookDetails(mockBooks[id]);
-      setLastTransaction(mockBooks[id].lastTransaction);
+      setBookDetails(adminData.allBooksDetails[id]);
+      setLastTransaction(adminData.allBooksDetails[id].lastTransaction);
     } else {
       alert(
         "Book ID not found. Available: #BK001, #BK002, #BK003, #BK004, #BK005"
@@ -87,21 +124,51 @@ const AddTransaction = ({ onBack }) => {
     setFormData({});
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!bookId || !bookDetails) {
       alert("Please enter a valid Book ID");
       return;
     }
 
     const transactionData = {
-      bookId,
+      userID: bookDetails.userID,
+      bookID: bookId,
       transactionType,
-      multiplier,
-      ...formData,
     };
 
+    if (transactionType === "REGULAR") {
+      transactionData.principalAmount =
+        parseFloat(formData.principalAmount) || 0;
+      transactionData.loanEMI = parseFloat(formData.loanEMI) || 0;
+      transactionData.loanInterestAmount =
+        parseFloat(formData.loanInterestAmount) || 0;
+      transactionData.amountReturned = parseFloat(formData.amountReturned) || 0;
+      transactionData.penaltyAmount = parseFloat(formData.penaltyAmount) || 0;
+    } else if (transactionType === "LOAN") {
+      transactionData.loanTakenAmount = parseFloat(formData.loanAmount) || 0;
+    } else if (transactionType === "SETTLEMENT") {
+      transactionData.settlementType = formData.settlementType || "TO_USER";
+      transactionData.settlementAmount =
+        parseFloat(formData.settlementAmount) || 0;
+    }
+
+    const response = await apiPost(
+      ADMIN_ENDPOINTS.ADD_TRANSACTION,
+      transactionData
+    );
+    if (!response.success) {
+      alert("Error saving transaction: " + response.message);
+      return;
+    }
+
     console.log("Saving transaction:", transactionData);
-    alert("Transaction saved successfully!");
+    setAdminData((prevState) => ({
+      ...prevState,
+      allTransactionsDetails: [
+        response.data.transaction,
+        ...prevState.allTransactionsDetails,
+      ],
+    }));
     onBack();
   };
 
@@ -141,7 +208,7 @@ const AddTransaction = ({ onBack }) => {
               <div className="details-list">
                 <div className="detail-row">
                   <span className="detail-label">Name</span>
-                  <span className="detail-value">{bookDetails.name}</span>
+                  <span className="detail-value">{bookDetails.bookName}</span>
                 </div>
               </div>
             </div>
@@ -173,9 +240,9 @@ const AddTransaction = ({ onBack }) => {
             <div className="add-card">
               <h2 className="step-title">Amount Multiplier</h2>
               <div className="multiplier-section">
-                <label>Select Multiplier (Default: 1x)</label>
+                <label>Select Multiplier (Default: 1)</label>
                 <div className="multiplier-buttons">
-                  {["1x", "2x", "3x", "4x", "5x"].map((m) => (
+                  {[1, 2, 3, 4, 5].map((m) => (
                     <button
                       key={m}
                       className={`multiplier-btn ${
@@ -221,9 +288,12 @@ const AddTransaction = ({ onBack }) => {
                         type="text"
                         inputMode="numeric"
                         placeholder="0.00"
-                        value={formData.principal || ""}
+                        value={formData.principalAmount || ""}
                         onChange={(e) =>
-                          handleFormInputChange("principal", e.target.value)
+                          handleFormInputChange(
+                            "principalAmount",
+                            e.target.value
+                          )
                         }
                         className="form-input"
                       />
@@ -238,9 +308,9 @@ const AddTransaction = ({ onBack }) => {
                         type="text"
                         inputMode="numeric"
                         placeholder="0.00"
-                        value={formData.emi || ""}
+                        value={formData.loanEMI || 0}
                         onChange={(e) =>
-                          handleFormInputChange("emi", e.target.value)
+                          handleFormInputChange("loanEMI", e.target.value)
                         }
                         className="form-input"
                       />
@@ -255,9 +325,12 @@ const AddTransaction = ({ onBack }) => {
                         type="text"
                         inputMode="numeric"
                         placeholder="0.00"
-                        value={formData.interest || ""}
+                        value={formData.loanInterestAmount || 0}
                         onChange={(e) =>
-                          handleFormInputChange("interest", e.target.value)
+                          handleFormInputChange(
+                            "loanInterestAmount",
+                            e.target.value
+                          )
                         }
                         className="form-input"
                       />
@@ -272,9 +345,12 @@ const AddTransaction = ({ onBack }) => {
                         type="text"
                         inputMode="numeric"
                         placeholder="0.00"
-                        value={formData.returned || ""}
+                        value={formData.amountReturned || 0}
                         onChange={(e) =>
-                          handleFormInputChange("returned", e.target.value)
+                          handleFormInputChange(
+                            "amountReturned",
+                            e.target.value
+                          )
                         }
                         className="form-input"
                       />
@@ -289,9 +365,9 @@ const AddTransaction = ({ onBack }) => {
                         type="text"
                         inputMode="numeric"
                         placeholder="0.00"
-                        value={formData.penalty || ""}
+                        value={formData.penaltyAmount || 0}
                         onChange={(e) =>
-                          handleFormInputChange("penalty", e.target.value)
+                          handleFormInputChange("penaltyAmount", e.target.value)
                         }
                         className="form-input"
                       />

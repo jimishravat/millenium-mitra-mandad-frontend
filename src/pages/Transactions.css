@@ -18,14 +18,17 @@
 .section-card {
   background: white;
   padding: 2rem;
-  /* border-radius: 8px; */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0dbd7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .section-card h2 {
   color: #2c3e50;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
+  font-weight: 700;
+  border-bottom: 1px solid #f0eae5;
+  padding-bottom: 1rem;
 }
 
 .summary-grid {
@@ -38,52 +41,57 @@
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  color: white;
-  border-radius: 6px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0dbd7;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  border-top: 3px solid #9f7856;
 }
 
 .summary-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(159, 120, 86, 0.12);
+  border-top-color: #8d6f56;
 }
 
 .summary-item-1 {
-  background: linear-gradient(135deg, #7b68ee 0%, #6a5acd 100%);
+  border-top-color: #9f7856;
 }
 
 .summary-item-2 {
-  background: linear-gradient(135deg, #da70d6 0%, #c95fa0 100%);
+  border-top-color: #27ae60;
 }
 
 .summary-item-3 {
-  background: linear-gradient(135deg, #20b2aa 0%, #3db8a8 100%);
+  border-top-color: #5f47a6;
 }
 
 .summary-item-4 {
-  background: linear-gradient(135deg, #48b884 0%, #3fa372 100%);
+  border-top-color: #667eea;
 }
 
 .summary-item .label {
   font-size: 0.85rem;
-  opacity: 0.95;
+  color: #2c3e50;
   margin-bottom: 0.3rem;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .summary-item .abbreviation {
   font-size: 0.75rem;
-  opacity: 0.85;
+  color: #95a5a6;
   margin-bottom: 0.5rem;
   font-weight: 600;
   letter-spacing: 1px;
 }
 
 .summary-item .value {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: -0.5px;
 }
 
 .action-section {
@@ -94,16 +102,24 @@
 
 .add-transaction-btn {
   flex: 0 0 auto;
-  padding: 0.95rem 2.5rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-  transition: all 0.3s ease;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.95rem;
+  background-color: #9f7856;
+  color: white;
+  border: 1px solid #8d6f56;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(159, 120, 86, 0.15);
+  transition: all 0.2s ease;
 }
 
 .add-transaction-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+  background-color: #8d6f56;
+  box-shadow: 0 2px 6px rgba(159, 120, 86, 0.25);
+}
+
+.add-transaction-btn:active {
+  box-shadow: 0 1px 3px rgba(159, 120, 86, 0.15);
 }
 
 .filter-section {
@@ -122,22 +138,22 @@
 .filter-input,
 .filter-select {
   width: 100%;
-  padding: 0.95rem 1.1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0dbd7;
+  background-color: white;
+  color: #2c3e50;
   font-size: 0.95rem;
   font-family: inherit;
-  background-color: #fafbfc;
-  color: #2c3e50;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .filter-input:focus,
 .filter-select:focus {
   outline: none;
-  border-color: #667eea;
-  background-color: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #9f7856;
+  box-shadow: 0 2px 6px rgba(159, 120, 86, 0.12);
 }
 
 .book-id-input {
@@ -149,7 +165,7 @@
   right: 1rem;
   width: 1.3rem;
   height: 1.3rem;
-  color: #667eea;
+  color: #9f7856;
   pointer-events: none;
   opacity: 0.7;
 }
@@ -159,27 +175,26 @@
   overflow-x: auto;
   overflow-y: auto;
   max-height: 600px;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e0dbd7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-/* Custom scrollbar styling */
 .transactions-table-wrapper::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 .transactions-table-wrapper::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f5f5f5;
 }
 
 .transactions-table-wrapper::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #c0b5a8;
   border-radius: 4px;
 }
 
 .transactions-table-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #9f7856;
 }
 
 .transactions-table {
@@ -189,17 +204,19 @@
 }
 
 .transactions-table thead {
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: white;
+  border-bottom: 1px solid #e0dbd7;
 }
 
 .transactions-table th {
-  padding: 1.2rem 1.1rem;
+  padding: 1rem;
   text-align: left;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: #2c3e50;
+  border-bottom: 2px solid #9f7856;
 }
 
 
@@ -211,16 +228,16 @@
 }
 
 .clickable-row:hover td {
-  background-color: #f0f3ff;
+  background-color: #faf7f3;
 }
 
 
 
 
 .transactions-table td {
-  padding: 1.1rem;
-  border-bottom: 1px solid #e2e8f0;
-  color: #34495e;
+  padding: 1rem;
+  border-bottom: 1px solid #f0eae5;
+  color: #2c3e50;
   font-weight: 500;
 }
 
@@ -230,8 +247,8 @@
 }
 
 .transactions-table tbody tr:hover {
-  background-color: #f8f9fc;
-  box-shadow: inset 0 0 0 1px #e2e8f0;
+  background-color: #faf7f3;
+  box-shadow: inset 0 0 0 1px #e0dbd7;
 }
 
 .transactions-table tbody tr:last-child td {
@@ -290,22 +307,22 @@
 
 .filter-button {
   padding: 0.8rem 1.5rem;
-  background-color: #667eea;
+  background-color: #9f7856;
   color: white;
-  border: none;
-  border-radius: 4px;
+  border: 1px solid #8d6f56;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(159, 120, 86, 0.15);
 }
 
 .filter-button:hover {
-  background-color: #764ba2;
-  transform: translateY(-2px);
+  background-color: #8d6f56;
+  box-shadow: 0 2px 6px rgba(159, 120, 86, 0.25);
 }
 
 .filter-button:active {
-  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(159, 120, 86, 0.15);
 }
 
 .transactions-list {

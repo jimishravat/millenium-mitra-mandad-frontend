@@ -22,8 +22,10 @@ export const USER_ENDPOINTS = {
 export const ADMIN_ENDPOINTS = {
   GET_USERS: "/admin/get-users",
   GET_BOOKS: "/admin/get-books",
+  GET_TRANSACTIONS: "/admin/get-transactions",
   GET_USER_BOOK_TRANSACTION_HISTORY: "/admin/get-user-book-transaction-history",
-  CONFIG: "/admin/config",
+  UPDATE_CONFIG: "/admin/update-config",
+  GET_CONFIG: "/admin/get-config",
   ADD_TRANSACTION: "/admin/add-transaction",
   ADD_LOAN_TRANSACTION: "/admin/add-loan-transaction",
   ADD_USER: "/admin/add-user",

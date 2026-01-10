@@ -11,72 +11,72 @@ import MapBookToUser from "../components/MapBookToUser";
 
 const Users = () => {
   const { showError } = useError();
-  const { adminData, setAdminData } = useAppContext();
-  const [state, setState] = useState({
-    totalUsers: 0,
-    totalUserBooks: 0,
-  });
+  const { state } = useAppContext();
+  // const [state, setState] = useState({
+  //   totalUsers: 0,
+  //   totalUserBooks: 0,
+  // });
   const [view, setView] = useState("dashboard"); // "dashboard", "viewAll", "addEdit", "adminChanges", "viewAllBooks", "addEditBooks", "mapBookToUser"
   const [editingUser, setEditingUser] = useState(null);
   const [editingBook, setEditingBook] = useState(null);
-  useEffect(() => {
-    // API call to fetch all the users.
+  // useEffect(() => {
+  //   // API call to fetch all the users.
 
-    fetchUsers();
-    fetchAllBooks();
-  }, []);
+  //   fetchUsers();
+  //   fetchAllBooks();
+  // }, []);
 
-  const fetchUsers = async () => {
-    try {
-      const response = await apiPost(ADMIN_ENDPOINTS.GET_USERS, {});
-      if (response.success) {
-        // Handle the fetched users data
-        let userObj = {};
-        let totalBooks = 0;
-        response.data.forEach((user) => {
-          userObj[user.userID] = user;
-          totalBooks += user.booksIssued ? user.booksIssued.length : 0;
-        });
-        let totalUsers = Object.keys(userObj).length;
-        setState({
-          totalUsers: totalUsers,
-        });
-        setAdminData((preState) => ({
-          ...preState,
-          allUserDetailsObj: userObj,
-        }));
-      } else {
-        showError("Failed to fetch users: " + response.message);
-      }
-    } catch (error) {
-      showError("Error fetching users: " + error.message);
-    }
-  };
+  // const fetchUsers = async () => {
+  //   try {
+  //     const response = await apiPost(ADMIN_ENDPOINTS.GET_USERS, {});
+  //     if (response.success) {
+  //       // Handle the fetched users data
+  //       let userObj = {};
+  //       let totalBooks = 0;
+  //       response.data.forEach((user) => {
+  //         userObj[user.userID] = user;
+  //         totalBooks += user.booksIssued ? user.booksIssued.length : 0;
+  //       });
+  //       let totalUsers = Object.keys(userObj).length;
+  //       setState({
+  //         totalUsers: totalUsers,
+  //       });
+  //       setAdminData((preState) => ({
+  //         ...preState,
+  //         allUserDetailsObj: userObj,
+  //       }));
+  //     } else {
+  //       showError("Failed to fetch users: " + response.message);
+  //     }
+  //   } catch (error) {
+  //     showError("Error fetching users: " + error.message);
+  //   }
+  // };
 
-  const fetchAllBooks = async () => {
-    try {
-      const response = await apiPost(ADMIN_ENDPOINTS.GET_BOOKS, {});
-      if (response.success) {
-        // Handle the fetched users data
-        let bookObj = {};
-        response.data.forEach((book) => {
-          bookObj[book.bookID] = book;
-        });
-        setAdminData((preState) => ({
-          ...preState,
-          allBooksDetails: bookObj,
-        }));
-        setState((prevState) => ({
-          ...prevState,
-          totalUserBooks: response.data.length,
-        }));
-      } else {
-        showError("Failed to fetch users: " + response.message);
-      }
-    } catch (error) {
-      showError("Error fetching users: " + error.message);
-    }
-  };
+  // const fetchAllBooks = async () => {
+  //   try {
+  //     const response = await apiPost(ADMIN_ENDPOINTS.GET_BOOKS, {});
+  //     if (response.success) {
+  //       // Handle the fetched users data
+  //       let bookObj = {};
+  //       response.data.forEach((book) => {
+  //         bookObj[book.bookID] = book;
+  //       });
+  //       setAdminData((preState) => ({
+  //         ...preState,
+  //         allBooksDetails: bookObj,
+  //       }));
+  //       setState((prevState) => ({
+  //         ...prevState,
+  //         totalUserBooks: response.data.length,
+  //       }));
+  //     } else {
+  //       showError("Failed to fetch users: " + response.message);
+  //     }
+  //   } catch (error) {
+  //     showError("Error fetching users: " + error.message);
+  //   }
+  // };
 
   if (view === "viewAll") {
     return (
