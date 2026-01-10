@@ -16,6 +16,8 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api
  */
 const DEFAULT_CONFIG = {
   credentials: 'include', // Allows cookies to be sent with requests
+  sameSite : "none",
+  secure : true,
   headers: {
     'Content-Type': 'application/json',
   },
