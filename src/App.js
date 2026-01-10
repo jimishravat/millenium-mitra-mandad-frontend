@@ -76,6 +76,10 @@ function AppContent() {
 
   // Fetch user session on app load or when navigating to protected routes
   useEffect(() => {
+    if (window.location.hostname.includes("render.com")) {
+      window.location("https://fe-mm.jimishravat.in");
+    }
+
     const fetchUserSession = async () => {
       if (isApplicationLoaded || isLoginPage) {
         return; // Skip if already loaded or on login page
@@ -202,7 +206,7 @@ function AppContent() {
                 </ProtectedRoute>
               }
             />
-            
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Main>
